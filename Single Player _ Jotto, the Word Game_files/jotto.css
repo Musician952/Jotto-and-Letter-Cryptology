@@ -1,0 +1,50 @@
+#gameboard {
+    display: none;
+}
+
+#alphabet {
+    text-align: center;
+}
+
+.letter {
+    display: inline;
+    width: 100%;
+    cursor: pointer;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+#settings-form, #settings, #actions, #found-letters {
+    margin: 0 4.9% 0 4.9%;
+    width: 89.9%;
+}
+#settings-form input, #settings-form select, #settings-form button {
+    width: 99%;
+}
+#settings-form td, #settings td, #actions td {
+    width: 49.9%;
+    padding: 0 0 5px 0;
+}
+
+#settings, #found-letters {
+    border-right: 1px solid #ccc;
+}
+#settings .setting, #actions .setting {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 1em;
+}
+
+#guesses {
+    padding: 0 0 0 4.9%;
+    width: 94.9%;
+}
+#guesses .guess-text {
+    margin-bottom: 1em;
+    width: 98%;
+}
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: 1em;
+    padding-bottom: 0.25em;
+}
