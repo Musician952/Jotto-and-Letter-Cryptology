@@ -9,12 +9,11 @@ https://en.wikipedia.org/wiki/Jotto#:~:text=Each%20player%20has%20a%20secret,wor
 
 # To Do
 
-1. Need to clean up code in lettercomb.py and sort into functions
-2. Develop an algorimth to cancel out the letters in the alphabet that cannot exist in the secret word.
-3. Dive into threading and background processes for the combination algorithm.
-4. Add In-Line Progress Bars while in loops
-5. Clean up GUI
+1. Develop an algorimth to cancel out the letters in the alphabet that cannot exist in the secret word.
+2. Dive into threading and background processes for the combination algorithm.
+4. Clean up GUI
+5. Add estimated time remaining while in loops
 
 # Known Issues
 
-1. Filtering algorithm skips over words that are found in shorter lengthed user inputs.
+1. None
