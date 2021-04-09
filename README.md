@@ -1,4 +1,4 @@
-# Jotto-and-Letter-Cryptology
+# Jotto and Cryptology
 lettercomb.py is a python3 script that runs possible combinations of any given string with a minimum and maximum character length return value. It can optionally leave out results with duplicate characters as well as run results against a dictionary.
 
 # Requirements & Installation Guide
