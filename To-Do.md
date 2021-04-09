@@ -9,10 +9,14 @@ https://en.wikipedia.org/wiki/Jotto#:~:text=Each%20player%20has%20a%20secret,wor
 
 # To Do
 
+**Rename the repository**
+
 1. Develop an algorimth to cancel out the letters in the alphabet that cannot exist in the secret word.
 2. Dive into threading and background processes for the combination algorithm.
 4. Clean up GUI
 5. Add estimated time remaining while in loops
+6. Filter double results before running against dictionary
+7. Add 'Unique' phrases count
 
 # Known Issues
 
