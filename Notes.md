@@ -1,6 +1,8 @@
 Notes
 
-Math
+# Math
+
+**Figuring out progress algorithm**
 
 Case(1) If the repetition of letters are allowed than different combinations can be formed by 5 letters.
 

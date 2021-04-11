@@ -1,4 +1,5 @@
 import time
+import datetime as dt
 import collections
 from itertools import product
 from collections import Counter
@@ -56,11 +57,18 @@ def dothecombobaby(string, minimum_length, maximum_length, duplicates, filtergib
         while lengthrange >= 0:
             totalcombos = totalcombos + (len(string) ** (maximum_length - lengthrange))
             lengthrange -= 1
+        #Set a timer
+        start = time.time()
+        cur_iter = 0
+        max_iter = totalcombos
 
         for length in range(minimum_length, maximum_length + 1):
             for combo in product(string, repeat=length):
-                j = j + 1
-                print ('Finding Valid Combinations... ' + str(j) + ' of ' + str(totalcombos), end="\r")
+                j += 1
+                cur_iter = j
+                prstime = calcProcessTime(start,cur_iter ,max_iter)
+                print("                                                                                                                                                                          \033[A")
+                print('Finding Valid Combinations... ' + str(j) + ' of ' + str(totalcombos) + " - time elapsed: %s, time left: %s, estimated finish time: %s"%prstime, end="\r")
                 val = ''.join(combo)
                 if duplicates == 'y':
                     if len(set(val)) == len(val):
@@ -75,12 +83,12 @@ def dothecombobaby(string, minimum_length, maximum_length, duplicates, filtergib
                             else:
                                 i = i + 1
                                 listOutput.append(val)
-                                print("                                                      \033[A")
+                                print("                                                                                                                                                                          \033[A")
                                 print('Combo ' + str(i) + ': ' + val)
                         else:
                             i = i + 1
                             listOutput.append(val)
-                            print("                                                      \033[A")
+                            print("                                                                                                                                                                          \033[A")
                             print('Combo ' + str(i) + ': ' + val)
 
                 elif duplicates == 'n':
@@ -95,21 +103,21 @@ def dothecombobaby(string, minimum_length, maximum_length, duplicates, filtergib
                         else:
                             i = i + 1
                             listOutput.append(val)
-                            print("                                                      \033[A")
+                            print("                                                                                                                                                                          \033[A")
                             print('Combo ' + str(i) + ': ' + val)
                     else:
                         i = i + 1
                         listOutput.append(val)
-                        print("                                                      \033[A")
+                        print("                                                                                                                                                                          \033[A")
                         print('Combo ' + str(i) + ': ' + val)
 
                 else:
-                    print("                                                      \033[A")
+                    print("                                                                                                                                                                          \033[A")
                     print('Input not understood.')
                     break
                 
 
-        print('There are ' + str(i) + ' combinations of the string ' + string + '!')
+        print('There are ' + str(i) + ' combinations of the string ' + string + '!' + ' - time elapsed: %s, time left: %s, time finished: %s'%prstime)
 
         return listOutput
 
@@ -117,9 +125,23 @@ def lookitupbaby(string, listOutput, filtergibberish):
 
     garbage = []
     i = 0
+    j = 0
+    totalcombos = len(listOutput)
+    
+    #Set time variables
+    start = time.time()
+    cur_iter = 0
+    max_iter = totalcombos
+
     if filtergibberish != 'y':
         for result in listOutput:
 
+            j += 1
+            cur_iter = j
+            prstime = calcProcessTime(start,cur_iter ,max_iter)
+            print("                                                                                                                                                                          \033[A")
+            print('Running Dictionary Check... ' + str(j) + ' of ' + str(totalcombos) + " - time elapsed: %s, time left: %s, estimated finish time: %s"%prstime, end="\r")
+                
             #Boolean
             wordexists = result.lower() in (string.lower() for string in words.words())
 
@@ -129,16 +151,23 @@ def lookitupbaby(string, listOutput, filtergibberish):
             if wordexists == False:
                 garbage.append(result)
             else:
-                print("                                                      \033[A")
+                print("                                                                                                                                                                          \033[A")
                 print("Found " + result)
 
         
-        print("                                                      \033[A")
+        print("                                                                                                                                                                          \033[A")
         print('removing ', garbage)
         listDictFilter = [k for k in listOutput if k not in garbage]
         print('remaining ', listDictFilter)
     else:
+        j += 1
+        cur_iter = j
+        prstime = calcProcessTime(start,cur_iter ,max_iter)
+        print("                                                                                                                                                                          \033[A")
+        print('Running Dictionary Check... ' + str(j) + ' of ' + str(totalcombos) + " - time elapsed: %s, time left: %s, estimated finish time: %s"%prstime, end="\r")
+        
         listDictFilter = [k for k in listOutput if k not in garbage]
+        print("                                                                                                                                                                          \033[A")
         print('Gibberish already filtered...')
 
     time.sleep(1)
@@ -153,8 +182,24 @@ def lookitupbaby(string, listOutput, filtergibberish):
             print('Definition ' + str(y + 1) + ": " + listOutputDefinition[y].definition())
             print('Examples ' + str(y + 1) + ": " + str(listOutputDefinition[y].examples()))
 
-    print('There are ' + str(len(listDictFilter)) + ' combinations of the string ' + string + '!')
+    print('There are ' + str(len(listDictFilter)) + ' dictionary results for the string ' + string + '!' + ' - time elapsed: %s, time left: %s, time finished: %s'%prstime)
 
-    return 
+    return
+
+def calcProcessTime(starttime, cur_iter, max_iter):
+
+    telapsed = time.time() - starttime
+    testimated = (telapsed/cur_iter)*(max_iter)
+
+    finishtime = starttime + testimated
+    lefttime = testimated-telapsed  # in seconds
+    
+    #Format
+    finishtime = dt.datetime.fromtimestamp(finishtime).strftime("%d %b, %Y %I:%M %p")  # in time
+    telapsed = str(dt.timedelta(seconds=telapsed)).split('.')[0]
+    lefttime = str(dt.timedelta(seconds=lefttime)).split('.')[0]
+
+
+    return (telapsed, lefttime, finishtime)
 
 main()
